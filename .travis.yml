@@ -1,0 +1,40 @@
+script:
+  - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
+  - export PATH="$HOME/.cargo/bin:$PATH"
+  - export CARGO_TARGET_DIR="$HOME/target"
+  - rustc -Vv
+  - cargo -Vv
+  - git clone https://github.com/servo/servo
+  - cd servo
+  - echo '[tools]' > .servobuild
+  - echo 'system-rust = true' >> .servobuild
+  - echo 'system-cargo = true' >> .servobuild
+  - echo 'cargo-home-dir = "~/.cargo"' >> .servobuild
+  - ./mach build --dev
+  - ./mach test-compiletest
+  - ./mach test-unit
+dist: trusty
+sudo: 9000
+addons:
+  apt:
+    packages:
+      - cmake
+      - freeglut3-dev
+      - gperf
+      - libosmesa6-dev
+      - libgles2-mesa-dev
+      - python-virtualenv
+      - xorg-dev
+      - ccache
+      - libdbus-glib-1-dev
+      - libavformat-dev
+      - libavcodec-dev
+      - libavutil-dev
+      - libedit-dev
+cache:
+  directories:
+    - $HOME/.cargo
+    - $HOME/.ccache
+    - $HOME/target
+env: CCACHE=/usr/bin/ccache
+
