@@ -6,6 +6,7 @@ script:
   - cargo -Vv
   - git clone https://github.com/servo/servo
   - cd servo
+  - GIT_PAGER= git log -n 1
   - echo '[tools]' > .servobuild
   - echo 'system-rust = true' >> .servobuild
   - echo 'system-cargo = true' >> .servobuild
