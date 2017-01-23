@@ -1,7 +1,6 @@
 script:
   - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
   - export PATH="$HOME/.cargo/bin:$PATH"
-  - export CARGO_TARGET_DIR="$HOME/target"
   - rustc -Vv
   - cargo -Vv
   - git clone https://github.com/servo/servo
@@ -40,6 +39,5 @@ cache:
   directories:
     - $HOME/.cargo
     - $HOME/.ccache
-    - $HOME/target
 env: CCACHE=/usr/bin/ccache
 
