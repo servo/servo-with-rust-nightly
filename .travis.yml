@@ -10,10 +10,11 @@ script:
   - echo 'system-rust = true' >> .servobuild
   - echo 'system-cargo = true' >> .servobuild
   - echo 'cargo-home-dir = "~/.cargo"' >> .servobuild
-  - ./mach build --dev
+  - ./mach cargo check
 
   # Tests seem to be failing (and taking too much time)
   # https://travis-ci.org/servo/servo-with-rust-nightly/builds/194321428
+#  - ./mach build --dev
 #  - ./mach test-compiletest
 #  - ./mach test-unit
 
