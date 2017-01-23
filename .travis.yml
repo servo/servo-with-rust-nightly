@@ -42,5 +42,8 @@ cache:
     - $HOME/.ccache
 env: CCACHE=/usr/bin/ccache
 notifications:
-  irc: "irc.mozilla.org#servo"
-
+  irc:
+    channels: "irc.mozilla.org#servo"
+    on_success: never
+    on_failure: always
+    template: "Servo failed to build with Rust nightly: %{build_url} CC nox, SimonSapin"
