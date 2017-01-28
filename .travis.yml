@@ -42,6 +42,7 @@ cache:
     - $HOME/.ccache
 env: CCACHE=/usr/bin/ccache
 notifications:
+  email: false
   irc:
     channels: "irc.mozilla.org#servo"
     on_success: never
