@@ -3,16 +3,16 @@ script:
   - cd servo
   - GIT_PAGER= git log -n 1
   - git ls-remote https://github.com/rust-lang/rust master | cut -f1 > rust-commit-hash
-  - ./mach bootstrap
+  - ./mach bootstrap-rust
+  - ./mach bootstrap-cargo
   - ./mach rustc --version -v
   - ./mach cargo --version -v
-  - ./mach cargo check
 
-  # Tests seem to be failing (and taking too much time)
-  # https://travis-ci.org/servo/servo-with-rust-nightly/builds/194321428
-#  - ./mach build --dev
-#  - ./mach test-compiletest
-#  - ./mach test-unit
+  - travis_wait 50 ./mach build --dev
+
+  # Disabled temporarily get to update the cache in under 50 minutes
+  #- ./mach test-unit
+  #- ./mach test-compiletest
 
 dist: trusty
 sudo: 9000
