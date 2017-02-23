@@ -9,10 +9,8 @@ script:
   - ./mach cargo --version -v
 
   - travis_wait 50 ./mach build --dev
-
-  # Disabled temporarily get to update the cache in under 50 minutes
-  #- ./mach test-unit
-  #- ./mach test-compiletest
+  - ./mach test-unit
+  - ./mach test-compiletest
 
 dist: trusty
 sudo: 9000
