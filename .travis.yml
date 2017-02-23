@@ -1,15 +1,11 @@
 script:
-  - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
-  - export PATH="$HOME/.cargo/bin:$PATH"
-  - rustc -Vv
-  - cargo -Vv
   - git clone https://github.com/servo/servo
   - cd servo
   - GIT_PAGER= git log -n 1
-  - echo '[tools]' > .servobuild
-  - echo 'system-rust = true' >> .servobuild
-  - echo 'system-cargo = true' >> .servobuild
-  - echo 'cargo-home-dir = "~/.cargo"' >> .servobuild
+  - git ls-remote https://github.com/rust-lang/rust master | cut -f1 > rust-commit-hash
+  - ./mach bootstrap
+  - ./mach rustc --version -v
+  - ./mach cargo --version -v
   - ./mach cargo check
 
   # Tests seem to be failing (and taking too much time)
