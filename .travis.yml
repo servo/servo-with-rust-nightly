@@ -2,7 +2,12 @@ script:
   - git clone https://github.com/servo/servo
   - cd servo
   - GIT_PAGER= git log -n 1
-  - if git rev-parse --verify origin/rustup; then git merge origin/rustup; fi
+
+  # Merge the rustup branch if it exists
+  # Disabled because it makes Travis hang?
+  # https://travis-ci.org/servo/servo-with-rust-nightly/builds/204775678#L761
+  #- if git rev-parse --verify origin/rustup; then git merge origin/rustup; fi
+
   - git ls-remote https://github.com/rust-lang/rust master | cut -f1 > rust-commit-hash
   - ./mach bootstrap-rust
   - ./mach bootstrap-cargo
