@@ -8,9 +8,7 @@ script:
   # https://travis-ci.org/servo/servo-with-rust-nightly/builds/204775678#L761
   #- if git rev-parse --verify origin/rustup; then git merge origin/rustup; fi
 
-  - git ls-remote https://github.com/rust-lang/rust master | cut -f1 > rust-commit-hash
-  - ./mach bootstrap-rust
-  - ./mach bootstrap-cargo
+  - ./mach rustup
   - ./mach rustc --version -v
   - ./mach cargo --version -v
 
