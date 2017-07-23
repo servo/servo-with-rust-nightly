@@ -12,7 +12,7 @@ script:
   - ./mach rustc --version -v
   - ./mach cargo --version -v
 
-  - travis_wait 50 ./mach build --dev
+  - python ../better_travis_wait.py ./mach build --dev
   - ./mach test-unit
   - ./mach test-compiletest
 
