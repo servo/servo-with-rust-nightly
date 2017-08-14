@@ -45,4 +45,4 @@ notifications:
     channels: "irc.mozilla.org#servo"
     on_success: never
     on_failure: always
-    template: "Servo failed to build with Rust nightly: %{build_url} CC nox, SimonSapin"
+    template: "Servo failed to build with Rust nightly: %{build_url} CC nox, SimonSapin, jonathandturner"
