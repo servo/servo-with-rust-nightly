@@ -1,3 +1,5 @@
+language: python
+fast_finish: true
 script:
   - git clone https://github.com/servo/servo
   - cd servo
