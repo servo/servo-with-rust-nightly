@@ -17,6 +17,7 @@ script:
   - python ../better_travis_wait.py ./mach build --dev
   - ./mach test-unit
   - ./mach test-compiletest
+  - (cd ports/geckolib && ../../mach cargo build)
 
 dist: trusty
 sudo: 9000
