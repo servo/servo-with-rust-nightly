@@ -21,22 +21,21 @@ script:
 
 dist: trusty
 sudo: 9000
+before_install:
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo add-apt-repository 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main' -y
+  - sudo apt-get update -q
+  - sudo apt-get install clang-3.9 llvm-3.9 llvm-3.9-runtime -y
+  - export LLVM_CONFIG=/usr/lib/llvm-3.9/bin/llvm-config
 addons:
   apt:
     packages:
       - cmake
-      - freeglut3-dev
       - gperf
-      - libosmesa6-dev
-      - libgles2-mesa-dev
       - python-virtualenv
       - xorg-dev
       - ccache
       - libdbus-glib-1-dev
-      - libavformat-dev
-      - libavcodec-dev
-      - libavutil-dev
-      - libedit-dev
 cache:
   directories:
     - $HOME/.cargo
