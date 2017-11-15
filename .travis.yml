@@ -1,5 +1,6 @@
 language: python
 fast_finish: true
+
 script:
   - git clone https://github.com/servo/servo
   - cd servo
@@ -27,11 +28,24 @@ before_install:
   - sudo apt-get update -q
   - sudo apt-get install clang-3.9 llvm-3.9 llvm-3.9-runtime -y
   - export LLVM_CONFIG=/usr/lib/llvm-3.9/bin/llvm-config
+  - export CC=gcc-5 CXX=g++-5
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - sourceline: 'ppa:jonathonf/ffmpeg-3'
     packages:
       - cmake
+      - dbus-x11
+      - gcc-5
+      - g++-5
       - gperf
+      - libavcodec-dev
+      - libavformat-dev
+      - libpulse-dev
+      - libswscale-dev
+      - libswresample-dev
+      - pulseaudio
       - python-virtualenv
       - xorg-dev
       - ccache
