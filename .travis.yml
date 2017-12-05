@@ -1,7 +1,7 @@
 language: python
 fast_finish: true
 
-script:
+install:
   - git clone https://github.com/servo/servo
   - cd servo
   - GIT_PAGER= git log -n 1
@@ -15,9 +15,18 @@ script:
   - ./mach rustc --version -v
   - ./mach cargo --version -v
 
-  - python ../better_travis_wait.py ./mach build --dev
-  - ./mach test-unit
-  - (cd ports/geckolib && ../../mach cargo build)
+matrix:
+  include:
+    - env: what=build_dev + test-unit  # Used only as a description in the job list
+      script:
+      - python ../better_travis_wait.py ./mach build --dev
+      - ./mach test-unit
+    - env: what=build_release
+      script:
+      - python ../better_travis_wait.py ./mach build --release
+    - env: what=geckolib
+      script:
+      - (cd ports/geckolib && ../../mach cargo build)
 
 dist: trusty
 sudo: 9000
