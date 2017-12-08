@@ -11,20 +11,21 @@ install:
   # https://travis-ci.org/servo/servo-with-rust-nightly/builds/204775678#L761
   #- if git rev-parse --verify origin/rustup; then git merge origin/rustup; fi
 
-  - ./mach rustup
-  - ./mach rustc --version -v
-  - ./mach cargo --version -v
+  - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
+  - source ~/.profile
+  - rustc +nightly --version -v
+  - cargo +nightly --version -v
 
 matrix:
   include:
     - env: mode=dev  # Used only as a description in the job list
       script:
-      - python ../better_travis_wait.py ./mach build --dev
-      - ./mach test-unit
-      - (cd ports/geckolib && ../../mach cargo build)
+      - python ../better_travis_wait.py cargo +nightly build
+      - cargo +nightly test
+      - cargo +nightly test -p stylo_tests
     - env: mode=release
       script:
-      - python ../better_travis_wait.py ./mach build --release
+      - python ../better_travis_wait.py cargo +nightly build --release
 
 dist: trusty
 sudo: 9000
