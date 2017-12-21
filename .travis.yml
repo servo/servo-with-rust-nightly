@@ -26,9 +26,9 @@ matrix:
 
     - env: mode=release
       # Compiling everything takes more than the already-extended 75 min time limit,
-      # so only compile script and dependencies.
+      # so only compile style and dependencies.
       script:
-      - python ../better_travis_wait.py cargo +nightly build --release -p script
+      - python ../better_travis_wait.py cargo +nightly build --release -p style --manifest-path ports/servo/Cargo.toml
 
 dist: trusty
 sudo: 9000
