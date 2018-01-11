@@ -18,16 +18,14 @@ install:
 
 matrix:
   include:
-    - env: mode=dev  # Used only as a description in the job list
-      script:
+    - script:
       - python ../better_travis_wait.py cargo +nightly build
       - cargo +nightly test
       - cargo +nightly test -p stylo_tests
 
-    - env: mode=release
+    - script:
       # Compiling everything takes more than the already-extended 75 min time limit,
       # so only compile style and dependencies.
-      script:
       - python ../better_travis_wait.py cargo +nightly build --release -p style --manifest-path ports/servo/Cargo.toml
 
 dist: trusty
@@ -64,7 +62,7 @@ cache:
   directories:
     - $HOME/.cargo
     - $HOME/.ccache
-env: CCACHE=/usr/bin/ccache
+env: CCACHE=/usr/bin/ccache CARGO_INCREMENTAL=0
 notifications:
   email: false
   irc:
