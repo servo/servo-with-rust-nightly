@@ -24,9 +24,7 @@ matrix:
       - cargo +nightly test -p stylo_tests
 
     - script:
-      # Compiling everything takes more than the already-extended 75 min time limit,
-      # so only compile style and dependencies.
-      - python ../better_travis_wait.py cargo +nightly build --release -p style --manifest-path ports/servo/Cargo.toml
+      - python ../better_travis_wait.py cargo +nightly build --release
 
 dist: trusty
 sudo: 9000
