@@ -18,12 +18,14 @@ install:
 
 matrix:
   include:
-    - script:
+    - env: debug+unit+stylo
+      script:
       - python ../better_travis_wait.py cargo +nightly build
       - cargo +nightly test
       - cargo +nightly test -p stylo_tests
 
-    - script:
+    - env: release
+      script:
       - python ../better_travis_wait.py cargo +nightly build --release
 
 dist: trusty
@@ -34,24 +36,13 @@ before_install:
   - sudo apt-get update -q
   - sudo apt-get install clang-3.9 llvm-3.9 llvm-3.9-runtime -y
   - export LLVM_CONFIG=/usr/lib/llvm-3.9/bin/llvm-config
-  - export CC=gcc-5 CXX=g++-5
+  - export CCACHE=/usr/bin/ccache
+  - export CARGO_INCREMENTAL=0
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
-      - sourceline: 'ppa:jonathonf/ffmpeg-3'
     packages:
       - cmake
-      - dbus-x11
-      - gcc-5
-      - g++-5
       - gperf
-      - libavcodec-dev
-      - libavformat-dev
-      - libpulse-dev
-      - libswscale-dev
-      - libswresample-dev
-      - pulseaudio
       - python-virtualenv
       - xorg-dev
       - ccache
@@ -60,7 +51,6 @@ cache:
   directories:
     - $HOME/.cargo
     - $HOME/.ccache
-env: CCACHE=/usr/bin/ccache CARGO_INCREMENTAL=0
 notifications:
   email: false
   irc:
