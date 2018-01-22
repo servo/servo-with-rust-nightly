@@ -38,6 +38,7 @@ before_install:
   - export LLVM_CONFIG=/usr/lib/llvm-3.9/bin/llvm-config
   - export CCACHE=/usr/bin/ccache
   - export CARGO_INCREMENTAL=0
+  - export RUSTFLAGS="--cap-lints warn"
 addons:
   apt:
     packages:
