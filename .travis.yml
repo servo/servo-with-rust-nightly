@@ -18,11 +18,10 @@ install:
 
 matrix:
   include:
-    - env: debug+unit+stylo
+    - env: debug+unit
       script:
       - python ../better_travis_wait.py cargo +nightly build
       - cargo +nightly test
-      - cargo +nightly test -p stylo_tests
 
     - env: release
       script:
