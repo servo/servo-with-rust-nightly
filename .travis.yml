@@ -13,15 +13,16 @@ install:
 
   - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
   - source ~/.profile
-  - rustc +nightly --version -v
-  - cargo +nightly --version -v
+  - echo nightly > rust-toolchain
+  - rustc --version -v
+  - cargo --version -v
 
 matrix:
   include:
     - env: debug+unit
       script:
-      - python ../better_travis_wait.py cargo +nightly build
-      - cargo +nightly test
+      - python ../better_travis_wait.py ./mach build --dev
+      - python ../better_travis_wait.py ./mach test-unit
 
     - env: release
       script:
@@ -30,7 +31,7 @@ matrix:
       # For example, compare
       #   https://travis-ci.org/servo/servo-with-rust-nightly/builds/333163334
       #   https://travis-ci.org/servo/servo-with-rust-nightly/builds/333625176
-      - python ../better_travis_wait.py cargo +nightly build --release -p script --manifest-path ports/servo/Cargo.toml
+      - python ../better_travis_wait.py ./mach build --release -p script
 
 dist: trusty
 sudo: 9000
