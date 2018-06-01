@@ -26,12 +26,7 @@ matrix:
 
     - env: release
       script:
-      # A full release build time randomly varies by 15+ min
-      # and can go over even with a time out extended to 90 min :(
-      # For example, compare
-      #   https://travis-ci.org/servo/servo-with-rust-nightly/builds/333163334
-      #   https://travis-ci.org/servo/servo-with-rust-nightly/builds/333625176
-      - python ../better_travis_wait.py ./mach build --release -p script
+      - python ../better_travis_wait.py ./mach build --release
 
 dist: trusty
 sudo: 9000
