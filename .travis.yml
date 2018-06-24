@@ -13,7 +13,7 @@ install:
 
   - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
   - source ~/.profile
-  - echo nightly > rust-toolchain
+  - echo nightly-2018-06-23 > rust-toolchain
   - rustc --version -v
   - cargo --version -v
 
@@ -54,8 +54,8 @@ cache:
     - $HOME/.ccache
 notifications:
   email: false
-  irc:
-    channels: "irc.mozilla.org#servo"
-    on_success: never
-    on_failure: always
-    template: "Servo failed to build with Rust nightly: %{build_url} CC nox, SimonSapin, jntrnr, emilio"
+#  irc:
+#    channels: "irc.mozilla.org#servo"
+#    on_success: never
+#    on_failure: always
+#    template: "Servo failed to build with Rust nightly: %{build_url} CC nox, SimonSapin, jntrnr, emilio"
