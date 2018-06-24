@@ -34,7 +34,7 @@ before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo add-apt-repository 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main' -y
   - sudo apt-get update -q
-  - sudo apt-get install clang-3.9 llvm-3.9 llvm-3.9-runtime -y
+  - sudo apt-get install clang-3.9 llvm-3.9 llvm-3.9-runtime -y --allow-unauthenticated
   - export LLVM_CONFIG=/usr/lib/llvm-3.9/bin/llvm-config
   - export CCACHE=/usr/bin/ccache
   - export CARGO_INCREMENTAL=0
