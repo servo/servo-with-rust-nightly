@@ -53,6 +53,8 @@ addons:
       - xorg-dev
       - ccache
       - libdbus-glib-1-dev
+      - libgstreamer1.0-dev
+      - libgstreamer-plugins-base1.0-dev
 cache:
   directories:
     - $HOME/.cargo
