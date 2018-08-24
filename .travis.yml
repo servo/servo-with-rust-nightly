@@ -41,6 +41,8 @@ before_install:
   - sudo apt-get update -q
   - sudo apt-get install clang-3.9 llvm-3.9 llvm-3.9-runtime -y --allow-unauthenticated
   - export LLVM_CONFIG=/usr/lib/llvm-3.9/bin/llvm-config
+  - export CC="gcc-6"
+  - export CXX="g++-6"
   - export CCACHE=/usr/bin/ccache
   - export CARGO_INCREMENTAL=0
   - export RUSTFLAGS="--cap-lints warn"
@@ -55,8 +57,12 @@ before_install:
 
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
     packages:
+      - autoconf2.13
       - cmake
+      - g++-6
       - gperf
       - python-virtualenv
       - xorg-dev
